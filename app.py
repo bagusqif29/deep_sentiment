@@ -43,7 +43,7 @@ output = None
 score = None
 st.title('Sentiment Analysis with DeepLearning')
 
-user_input = st.text_input("Enter Your Sentence :", key="user_input")
+user_input = st.text_input("Enter Your Sentence :")
 if user_input :
     translated_text = GoogleTranslator(source='auto', target='english').translate(user_input)
     data_l = query({"inputs": translated_text})
@@ -91,8 +91,7 @@ if output != None:
 
         print("berhasil "+str(user_input))
         print("_______________________________________________________________")
-        st.session_state.user_input = user_input
-        st.empty() 
+        
         
     st.title(output)
 
