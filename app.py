@@ -58,7 +58,7 @@ if user_input :
         st.title(output)
         st.stop()
 
-    if !data_l:
+    if not data_l:
         output = 'ERROR'
         st.title(output)
         st.stop()
