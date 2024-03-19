@@ -58,6 +58,11 @@ if user_input :
         st.title(output)
         st.stop()
 
+    if !data:
+        output = 'ERROR'
+        st.title(output)
+        st.stop()
+    
 if output != None:
     
     with st.spinner("Wait for it...."):
