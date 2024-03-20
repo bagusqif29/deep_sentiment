@@ -47,6 +47,13 @@ user_input = st.text_input("Enter Your Sentence :")
 if user_input :
     translated_text = GoogleTranslator(source='auto', target='english').translate(user_input)
     data_l = query({"inputs": translated_text})
+    
+    if data_l:
+        data_l2 = data_l[0]
+    else:
+        st.title("ERROR!")
+        st.stop
+    
     data_l2 = data_l[0]
 
     output = str(data_l2[0]['label'])
