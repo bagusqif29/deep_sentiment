@@ -8,6 +8,9 @@ from datetime import datetime
 import time
 import toml
 
+st.set_page_config(page_title="Sentiment Analysis using DeepLearning")
+
+
 st.markdown("""
     <style>
     #MainMenu {visibility: hidden;}
