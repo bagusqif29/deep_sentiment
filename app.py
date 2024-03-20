@@ -95,7 +95,7 @@ def contoh():
     st.write(st.session_state['input'])
 
 
-st.title('Sentiment Analysis with DeepLearning')
+st.title('Sentiment Analysis with hhhhDeepLearning')
 
 temp = st.empty()
 temp2 = st.empty()
