@@ -63,7 +63,7 @@ def process():
         st.stop()
     
     if output != None:
-        pl.text("Wait for it....")
+        pl.markdown("<h2 style='text-align:center;'>Wait for it....</h2>", unsafe_allow_html=True)
         #make db
         engine = create_engine(DATABASE_URL)
         conn = engine.connect()
@@ -95,15 +95,16 @@ def contoh():
     st.write(st.session_state['input'])
 
 
-st.title('Sentiment Analysis with DeepLearning')
-
+st.markdown('<h1 style="text-align:center;">Sentiment Analysis using DeepLearning</h1>', unsafe_allow_html=True)
+st.subheader('', divider='violet')
 temp = st.empty()
 temp2 = st.empty()
 pl = st.empty()
 
 
-user_input = temp.text_input("Enter Your Sentence :", on_change=process, key='input')
+user_input = temp.text_input("", on_change=process, key='input', autocomplete='Thanks God!', max_chars=250, placeholder="Insert Here")
 # title = temp2.title(st.session_state['title'])
+st.subheader('', divider='violet')
 
 a = "<h1 style='background-color:#198754; text-align:center;'>POSITIVE</h1>"
 b = "<h1 style='background-color:#dc3545; text-align:center;'>NEGATIVE</h1>"
