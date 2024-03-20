@@ -23,9 +23,12 @@ st.markdown("""
 API_TOKEN = st.secrets['config']['API_TOKEN']
 api_url = st.secrets['config']['api_url']
 DATABASE_URL = st.secrets['config']['DATABASE_URL']
-
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
+
+if 'input' not in st.session_state:
+    st.session_state.input = ''
+    st.session_state.title = ''
 
 def query(payload):
     response = requests.post(api_url, headers=headers, json=payload)
@@ -38,41 +41,29 @@ def waktu_now_jakarta():
     jakarta_time = jakarta_time.strftime('%Y-%m-%d %H:%M:%S')
     return jakarta_time
 
+def process():
+    user_input = st.session_state['input']
+    temp.empty()
+    temp2.empty()
 
-output = None
-score = None
-st.title('Sentiment Analysis with DeepLearning')
-
-user_input = st.text_input("Enter Your Sentence :")
-if user_input :
-    translated_text = GoogleTranslator(source='auto', target='english').translate(user_input)
+    translated_text = GoogleTranslator(source='auto', target='english').translate(st.session_state['input'])
     data_l = query({"inputs": translated_text})
-    
     if data_l:
         data_l2 = data_l[0]
     else:
         st.title("ERROR!")
-        st.stop
-    
-    data_l2 = data_l[0]
+        st.stop()
 
     output = str(data_l2[0]['label'])
     score = float(data_l2[0]['score'])
-
 
     if data_l2[0]['score'] == data_l2[1]['score']:
         output = 'Unknown'
         st.title(output)
         st.stop()
-
-    if output == None:
-        output = 'ERROR'
-        st.title(output)
-        st.stop()
     
-if output != None:
-    
-    with st.spinner("Wait for it...."):
+    if output != None:
+        pl.text("Wait for it....")
         #make db
         engine = create_engine(DATABASE_URL)
         conn = engine.connect()
@@ -95,13 +86,38 @@ if output != None:
         conn.execute(stmt, params)
         conn.commit()
 
+        st.session_state.title = output
+        st.session_state['input'] = ''
 
-        print("berhasil "+str(user_input))
-        print("_______________________________________________________________")
-        
-        
-    st.title(output)
 
+
+def contoh():
+    st.write(st.session_state['input'])
+
+
+st.title('Sentiment Analysis with DeepLearning')
+
+temp = st.empty()
+temp2 = st.empty()
+pl = st.empty()
+
+
+user_input = temp.text_input("Enter Your Sentence :", on_change=process, key='input')
+# title = temp2.title(st.session_state['title'])
+
+a = "<h1 style='background-color:#198754; text-align:center;'>POSITIVE</h1>"
+b = "<h1 style='background-color:#dc3545; text-align:center;'>NEGATIVE</h1>"
+c = "<h1 style='background-color:#ffc107; text-align:center;'>ERROR!</h1>"
+
+if st.session_state.title == "POSITIVE":
+    temp2.markdown(a, unsafe_allow_html=True)
+
+elif st.session_state.title == "NEGATIVE":
+    temp2.markdown(b, unsafe_allow_html=True)
+elif st.session_state.title != '':
+    temp2.markdown(c, unsafe_allow_html=True)
+
+# st.session_state
 
 
 
