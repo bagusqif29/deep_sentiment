@@ -59,7 +59,7 @@ def get_ip_address():
 #get location using geocoder        
 def get_location_g():
     try:
-        client_ip = request.remote_addr
+        client_ip = get_ip_address()
         g = geocoder.ip(client_ip)
         list = [g.latlng[0], g.latlng[1], g.city]
         return list
