@@ -48,13 +48,9 @@ def query2(payload):
     return response.json()
 
 
-
-
-
-def get_ip_address() -> Optional[str]:
+def get_ip_address():
     try:
-        hostname = socket.gethostname()
-        ip_address = socket.gethostbyname(hostname)
+        ip_address = requests.get('https://api.ipify.org').text
         return ip_address
     except Exception as e:
         st.error(f"Error: {e}")
