@@ -212,7 +212,7 @@ elif st.session_state.err != False:
     temp2.markdown(c, unsafe_allow_html=True)
 
 st.subheader('', divider='violet')
-st.session_state
+# st.session_state
 
 
 
