@@ -174,7 +174,7 @@ def contoh():
     st.write(st.session_state['input'])
 
 
-st.markdown('<h1 style="text-align:center;">Sentiment Analysis using DeepLearning</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="text-align:center;">Sentiment Analysis usingfdfdfd DeepLearning</h1>', unsafe_allow_html=True)
 st.subheader('', divider='violet')
 
 temp = st.empty()
