@@ -156,12 +156,12 @@ def process():
             params = {'user_input': user_input, 'translated_text': translated_text, 'os':lang_source, 'output': output, 'score': score, 'ip':ip, 'lat':lat, 'long':long, 'city':city, 'waktu': waktu}
             conn.execute(stmt, params)
             conn.commit()
+            st.session_state.title = output
             # st.text("STMT",stmt)
 
     except Exception as e:
         st.session_state.err = True
 
-    st.session_state.title = output
         # st.session_state['input'] = ''
     
 def process_text_to_gen():
@@ -174,7 +174,7 @@ def contoh():
     st.write(st.session_state['input'])
 
 
-st.markdown('<h1 style="text-align:center;">Sentiment Analysis usingfdfdfd DeepLearning</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="text-align:center;">Sentiment Analysis using DeepLearning</h1>', unsafe_allow_html=True)
 st.subheader('', divider='violet')
 
 temp = st.empty()
