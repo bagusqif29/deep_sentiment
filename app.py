@@ -160,7 +160,7 @@ def process():
             # st.text("STMT",stmt)
 
     except Exception as e:
-        st.session_state.err = True
+        st.session_state.err = e
 
         # st.session_state['input'] = ''
     
@@ -207,7 +207,7 @@ elif st.session_state.title == "NEGATIVE":
 elif st.session_state.title == "NEUTRAL":
     form.text("Text : "+user_input)
     temp2.markdown(d, unsafe_allow_html=True)
-elif st.session_state.err == True: 
+elif st.session_state.err != False: 
     st.session_state.err = False 
     temp2.markdown(c, unsafe_allow_html=True)
 
