@@ -160,8 +160,8 @@ def process():
             # st.text("STMT",stmt)
 
     except Exception as e:
-        st.session_state.err = e
-
+        st.session_state.err = True
+        st.session_state.title = e
         # st.session_state['input'] = ''
     
 def process_text_to_gen():
